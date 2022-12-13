@@ -1,6 +1,6 @@
-﻿CREATE DATABASE HomeApplicaceRentalSystemDb
+﻿CREATE DATABASE harsDb
 GO
-USE HomeApplicaceRentalSystemDb
+USE harsDb
 GO
 CREATE TABLE tblUser(
 	Id INT PRIMARY KEY IDENTITY (1,1),
