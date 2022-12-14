@@ -25,13 +25,16 @@ CREATE TABLE tblItem(
 	Brand VARCHAR(150) NOT NULL,
 	Model VARCHAR(150) NOT NULL,
 	Dimensions VARCHAR(150) NOT NULL,
-	Colour VARCHAR(150) NOT NULL,
+	Color VARCHAR(150) NOT NULL,
 	EnergyConsumption VARCHAR(150) NOT NULL,
-	MonthlyFee VARCHAR(150) NOT NULL
+	MonthlyFee DECIMAL NOT NULL
 );
 GO
 INSERT INTO tblUser VALUES ('admin', '123','Admin');
 INSERT INTO tblUser VALUES ('tanvir', '123','Customer');
 
---SELECT *
---FROM tblUser
+SELECT *
+FROM tblUser
+
+SELECT *
+FROM tblItem

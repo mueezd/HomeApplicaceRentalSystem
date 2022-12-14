@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HomeApplicaceRentalSystem
@@ -26,7 +20,7 @@ namespace HomeApplicaceRentalSystem
             userName = txtUserName.Text.Trim();
             password = txtPassword.Text.Trim();
 
-            var connectionDb = System.Configuration.ConfigurationManager.ConnectionStrings["HarsDb"].ConnectionString;
+            var connectionDb = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             SqlConnection sqlcon = new SqlConnection(connectionDb);
             string query = "SELECT * FROM tblUser WHERE UserName = '"+ userName +"'AND password = '" + password + "'";
