@@ -54,6 +54,13 @@ namespace HomeApplicaceRentalSystem
             }
         }
 
+        private void llLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            frmLogin loginForm = new frmLogin();
+            loginForm.Show();
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             Clear();

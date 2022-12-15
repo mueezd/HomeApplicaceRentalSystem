@@ -12,6 +12,7 @@ namespace HomeApplicaceRentalSystem
             InitializeComponent();
         }
 
+        int attemptCount = 0;
         private void btnLogin_Click(object sender, EventArgs e)
         {
             // Variable declare for hold user name and password
@@ -47,7 +48,17 @@ namespace HomeApplicaceRentalSystem
                 else
                 {
                     lblMessage.Text = "Check your user Name and password";
+                    attemptCount++;
                 }
+            }
+
+            if (attemptCount >= 4)
+            {
+                txtUserName.Enabled = false;
+                txtPassword.Enabled = false;
+                btnLogin.Enabled = false;
+                lblMessage.Text = "You’ve been temporarily locked! Try again Later";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
             }
 
         }

@@ -47,6 +47,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.labelMendatorySign = new System.Windows.Forms.Label();
             this.lblItemId = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
@@ -55,6 +64,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.llLogout = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             this.SuspendLayout();
@@ -223,6 +233,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.labelMendatorySign);
             this.groupBox1.Controls.Add(this.lblItemId);
             this.groupBox1.Controls.Add(this.lblMessage);
             this.groupBox1.Controls.Add(this.btnClear);
@@ -251,10 +270,109 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(21, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(355, 410);
+            this.groupBox1.Size = new System.Drawing.Size(370, 410);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Home Appliance Information";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label16.ForeColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(346, 238);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(12, 15);
+            this.label16.TabIndex = 27;
+            this.label16.Text = "*";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(346, 296);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(12, 15);
+            this.label17.TabIndex = 28;
+            this.label17.Text = "*";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(346, 267);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(12, 15);
+            this.label18.TabIndex = 29;
+            this.label18.Text = "*";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(346, 156);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(12, 15);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "*";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(346, 209);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(12, 15);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "*";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(346, 180);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(12, 15);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "*";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(346, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(12, 15);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "*";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(346, 122);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(12, 15);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "*";
+            // 
+            // labelMendatorySign
+            // 
+            this.labelMendatorySign.AutoSize = true;
+            this.labelMendatorySign.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelMendatorySign.ForeColor = System.Drawing.Color.Red;
+            this.labelMendatorySign.Location = new System.Drawing.Point(346, 93);
+            this.labelMendatorySign.Name = "labelMendatorySign";
+            this.labelMendatorySign.Size = new System.Drawing.Size(12, 15);
+            this.labelMendatorySign.TabIndex = 23;
+            this.labelMendatorySign.Text = "*";
             // 
             // lblItemId
             // 
@@ -339,11 +457,24 @@
             this.dgvItem.TabIndex = 19;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
+            // llLogout
+            // 
+            this.llLogout.AutoSize = true;
+            this.llLogout.Location = new System.Drawing.Point(984, 14);
+            this.llLogout.Name = "llLogout";
+            this.llLogout.Size = new System.Drawing.Size(50, 15);
+            this.llLogout.TabIndex = 20;
+            this.llLogout.TabStop = true;
+            this.llLogout.Text = "Log Out";
+            this.llLogout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llLogout_LinkClicked);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1056, 476);
+            this.Controls.Add(this.llLogout);
             this.Controls.Add(this.dgvItem);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmAdmin";
@@ -353,6 +484,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -385,5 +517,15 @@
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.DataGridView dgvItem;
         private System.Windows.Forms.Label lblItemId;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelMendatorySign;
+        private System.Windows.Forms.LinkLabel llLogout;
     }
 }

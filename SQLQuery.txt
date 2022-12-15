@@ -30,6 +30,19 @@ CREATE TABLE tblItem(
 	MonthlyFee DECIMAL NOT NULL
 );
 GO
+CREATE TABLE tblCart
+(
+	Id INT PRIMARY KEY IDENTITY(1,1),
+	ItemTypeName VARCHAR(150),
+	ItemName VARCHAR(150),
+	MonthlyRent DECIMAL,
+	Quantity INT,
+	TotalCost DECIMAL,
+	CustomerName VARCHAR(150) NULL,
+	ItemId INT NULL
+);
+GO
+
 INSERT INTO tblUser VALUES ('admin', '123','Admin');
 INSERT INTO tblUser VALUES ('tanvir', '123','Customer');
 

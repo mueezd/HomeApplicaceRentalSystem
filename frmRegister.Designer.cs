@@ -138,33 +138,33 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(340, 31);
+            this.label11.Location = new System.Drawing.Point(340, 34);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(21, 25);
+            this.label11.Size = new System.Drawing.Size(12, 15);
             this.label11.TabIndex = 14;
             this.label11.Text = "*";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(341, 112);
+            this.label12.Location = new System.Drawing.Point(340, 113);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(21, 25);
+            this.label12.Size = new System.Drawing.Size(12, 15);
             this.label12.TabIndex = 15;
             this.label12.Text = "*";
             // 
             // labelMendatorySign
             // 
             this.labelMendatorySign.AutoSize = true;
-            this.labelMendatorySign.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelMendatorySign.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelMendatorySign.ForeColor = System.Drawing.Color.Red;
-            this.labelMendatorySign.Location = new System.Drawing.Point(341, 75);
+            this.labelMendatorySign.Location = new System.Drawing.Point(340, 73);
             this.labelMendatorySign.Name = "labelMendatorySign";
-            this.labelMendatorySign.Size = new System.Drawing.Size(21, 25);
+            this.labelMendatorySign.Size = new System.Drawing.Size(12, 15);
             this.labelMendatorySign.TabIndex = 16;
             this.labelMendatorySign.Text = "*";
             // 
@@ -214,11 +214,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(422, 270);
             this.Controls.Add(this.linkLabelBackToLogin);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmRegister";
-            this.Text = "frmRegister";
+            this.Text = "Customer Register";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
