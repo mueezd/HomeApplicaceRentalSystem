@@ -27,8 +27,7 @@ namespace HomeApplicaceRentalSystem
         SqlConnection sqlcon = new SqlConnection(connectionDb);
         private void frmAdmin_Load(object sender, EventArgs e)
         {
-            GetItemRecord();
-            
+            GetItemRecord();   
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -56,6 +55,7 @@ namespace HomeApplicaceRentalSystem
 
         private void llLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            // Logout and login again
             this.Hide();
             frmLogin loginForm = new frmLogin();
             loginForm.Show();
@@ -69,18 +69,6 @@ namespace HomeApplicaceRentalSystem
         private void btnAdd_Click(object sender, EventArgs e)
         {
           
-
-            ItemTypeName = txtItemTypeName.Text.Trim();
-            ItemName = txtItemName.Text.Trim();
-            Description = txtDescription.Text.Trim();
-            Brand = txtBrand.Text.Trim();
-            Model = txtModel.Text.Trim();
-            Dimensions = txtDimension.Text.Trim();
-            Color = txtColor.Text.Trim();
-            EnergyConsumption = txtEnergyConsumption.Text.Trim();
-            MonthlyRent = Convert.ToDecimal(txtMonthlyRent.Text.Trim());
-
-
             if (IsValid())
             {
                 SqlCommand cmd = new SqlCommand("INSERT INTO tblItem VALUES (@ItemTypeName, " +
@@ -88,15 +76,15 @@ namespace HomeApplicaceRentalSystem
                     "@MonthlyRent)", sqlcon);
 
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@ItemTypeName", ItemTypeName);
-                cmd.Parameters.AddWithValue("@ItemName", ItemName);
-                cmd.Parameters.AddWithValue("@Description", Description);
-                cmd.Parameters.AddWithValue("@Brand", Brand);
-                cmd.Parameters.AddWithValue("@Model", Model);
-                cmd.Parameters.AddWithValue("@Dimensions", Dimensions);
-                cmd.Parameters.AddWithValue("@Color", Color);
-                cmd.Parameters.AddWithValue("@EnergyConsumption", EnergyConsumption);
-                cmd.Parameters.AddWithValue("@MonthlyRent", MonthlyRent);
+                cmd.Parameters.AddWithValue("@ItemTypeName", txtItemTypeName.Text.Trim());
+                cmd.Parameters.AddWithValue("@ItemName", txtItemName.Text.Trim());
+                cmd.Parameters.AddWithValue("@Description", txtDescription.Text.Trim());
+                cmd.Parameters.AddWithValue("@Brand", txtBrand.Text.Trim());
+                cmd.Parameters.AddWithValue("@Model", txtModel.Text.Trim());
+                cmd.Parameters.AddWithValue("@Dimensions", txtDimension.Text.Trim());
+                cmd.Parameters.AddWithValue("@Color", txtColor.Text.Trim());
+                cmd.Parameters.AddWithValue("@EnergyConsumption", txtEnergyConsumption.Text.Trim());
+                cmd.Parameters.AddWithValue("@MonthlyRent", Convert.ToDecimal(txtMonthlyRent.Text));
 
                 sqlcon.Open();
                 cmd.ExecuteNonQuery();
@@ -144,11 +132,52 @@ namespace HomeApplicaceRentalSystem
             dgvItem.DataSource= dt;
         }
 
+        //Admin form field validation method.
         private bool IsValid()
         {
             if (txtItemTypeName.Text == string.Empty)
             {
-                MessageBox.Show("Please item type name!","Failed",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter item type name!","Failed",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtItemName.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter item name!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtDescription.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter description  name!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtBrand.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter Brand name!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtModel.Text == string.Empty)
+            {
+                MessageBox.Show("Please Enter model name!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtDimension.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter dimension!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtColor.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter color of item!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtEnergyConsumption.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter Energy Consumption!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtMonthlyRent.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter Monthly Rent Amount", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -157,6 +186,7 @@ namespace HomeApplicaceRentalSystem
 
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Call item data to Data Grid View to text boxes
             ItemId = Convert.ToInt32(dgvItem.SelectedRows[0].Cells[0].Value);
             txtItemTypeName.Text = dgvItem.SelectedRows[0].Cells[1].Value.ToString();
             txtItemName.Text = dgvItem.SelectedRows[0].Cells[2].Value.ToString();
@@ -173,7 +203,7 @@ namespace HomeApplicaceRentalSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            // Update Item to Database tblItem.
             if (ItemId > 0)
             {
                 SqlCommand cmd = new SqlCommand("UPDATE tblItem " +

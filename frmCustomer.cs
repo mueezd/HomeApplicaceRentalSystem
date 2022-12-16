@@ -16,8 +16,8 @@ namespace HomeApplicaceRentalSystem
         {
             InitializeComponent();
         }
-
         // Database connection string declaration.
+
         static string connectionDb = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         SqlConnection sqlcon = new SqlConnection(connectionDb);
 
@@ -26,20 +26,24 @@ namespace HomeApplicaceRentalSystem
         
         private void frmCustomer_Load(object sender, EventArgs e)
         {
+
             GetItemRecord();
             GetShoppingCardData();
             SelectedItemClear();
+              
+            lblUserName.Text = frmLogin.userName;
         }
 
 
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            // Validation of search text box.
             if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 SearchByItemType();
             }
-            else if (!string.IsNullOrEmpty(txtEnergyConsumption.Text))
+            else if (!string.IsNullOrEmpty(txtSearch.Text))
             {
                 SearchByEnergyConsumption();
             }
@@ -53,6 +57,7 @@ namespace HomeApplicaceRentalSystem
             }
         }
 
+        //method iItem data get from database, 
         private void GetItemRecord()
         {
             SqlCommand cmd = new SqlCommand("SELECT * FROM tblItem", sqlcon);
@@ -118,6 +123,7 @@ namespace HomeApplicaceRentalSystem
             txtSearch.Text = string.Empty;
             txtEnergyConsumption.Text = string.Empty;
             txtCost.Text = string.Empty;
+            GetItemRecord();
         }
 
         private void btnSelectionClear_Click(object sender, EventArgs e)
@@ -145,8 +151,10 @@ namespace HomeApplicaceRentalSystem
 
         }
 
+        
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Data call to Drid view Control.
             lblItemId.Text = Convert.ToInt32(dgvItem.SelectedRows[0].Cells[0].Value).ToString();
             lblTypeName.Text = dgvItem.SelectedRows[0].Cells[1].Value.ToString();
             lblItemName.Text = dgvItem.SelectedRows[0].Cells[2].Value.ToString();
@@ -157,6 +165,9 @@ namespace HomeApplicaceRentalSystem
             lblColor.Text = dgvItem.SelectedRows[0].Cells[7].Value.ToString();
             lblEnergy.Text = dgvItem.SelectedRows[0].Cells[8].Value.ToString();
             lblMonthlyRent.Text = dgvItem.SelectedRows[0].Cells[9].Value.ToString();
+
+            txtQuantity.Text = string.Empty;
+            txtMonths.Text = string.Empty;
         }
 
         //Total cost calculation method.
@@ -173,12 +184,21 @@ namespace HomeApplicaceRentalSystem
 
         private void txtMonths_TextChanged(object sender, EventArgs e)
         {
-            CostCalculation();
+            
+            if (!string.IsNullOrEmpty(txtMonths.Text))
+            {
+                int monthValue = 0;
+                if (Int32.TryParse(txtMonths.Text, out monthValue))
+                {
+                    CostCalculation();
+                }
+            }
+            
         }
 
         private void GetShoppingCardData()
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM tblCart", sqlcon);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM tblCart WHERE CustomerName = '"+frmLogin.userName+"'", sqlcon);
             DataTable dt = new DataTable();
             sqlcon.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
@@ -190,26 +210,30 @@ namespace HomeApplicaceRentalSystem
         private void btnAddToCart_Click(object sender, EventArgs e)
         {
             AddToCart();
+            TotalItemCartSum();
         }
 
         private void AddToCart()
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO tblCart VALUES (@ItemTypeName, " +
+            if (IsValidCart())
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO tblCart VALUES (@ItemTypeName, " +
                    "@ItemName, @MonthlyRent, @Quantity, @TotalCost, @CustomerName, @ItemId)", sqlcon);
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@ItemTypeName", lblTypeName.Text);
-            cmd.Parameters.AddWithValue("@ItemName", lblItemName.Text);
-            cmd.Parameters.AddWithValue("@MonthlyRent", Convert.ToDecimal(lblMonthlyRent.Text));
-            cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(txtQuantity.Text));
-            cmd.Parameters.AddWithValue("@TotalCost", Convert.ToDecimal(lblTotalPrice.Text.Replace("£","").Trim()));
-            cmd.Parameters.AddWithValue("@CustomerName", "TestCustomer");
-            cmd.Parameters.AddWithValue("@ItemId", Convert.ToInt32(lblItemId.Text));
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.AddWithValue("@ItemTypeName", lblTypeName.Text);
+                cmd.Parameters.AddWithValue("@ItemName", lblItemName.Text);
+                cmd.Parameters.AddWithValue("@MonthlyRent", Convert.ToDecimal(lblMonthlyRent.Text));
+                cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(txtQuantity.Text));
+                cmd.Parameters.AddWithValue("@TotalCost", Convert.ToDecimal(lblTotalPrice.Text.Replace("£", "").Trim()));
+                cmd.Parameters.AddWithValue("@CustomerName", frmLogin.userName);
+                cmd.Parameters.AddWithValue("@ItemId", Convert.ToInt32(lblItemId.Text));
 
-            sqlcon.Open();
-            cmd.ExecuteNonQuery();
-            sqlcon.Close();
-            MessageBox.Show("Your Home Appliance Item Added Successfully!", "Select", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                sqlcon.Open();
+                cmd.ExecuteNonQuery();
+                sqlcon.Close();
+                MessageBox.Show("Your Home Appliance Item Added Successfully!", "Select", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
 
             GetShoppingCardData();
@@ -247,6 +271,7 @@ namespace HomeApplicaceRentalSystem
             ItemId = Convert.ToInt32(dgvMyShoppingCart.SelectedRows[0].Cells[0].Value);
         }
 
+        //Method for calculation of item sum.
         private void TotalItemCartSum()
         {
             decimal sum = 0;
@@ -270,6 +295,46 @@ namespace HomeApplicaceRentalSystem
             this.Hide();
             frmLogin loginForm = new frmLogin();
             loginForm.Show();
+        }
+
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                //For exception handeling for change value of text box of shopping cart.
+                int QtyValue = 0;
+                if (Int32.TryParse(txtMonths.Text, out QtyValue))
+                {
+                    CostCalculation();
+                }
+            }
+        }
+
+        //Validation method for label and textbox of selected item.
+        private bool IsValidCart()
+        {
+            if (lblItemId.Text == string.Empty)
+            {
+                MessageBox.Show("Please select Home Appliance Item!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtQuantity.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter QUANTITY!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (txtMonths.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter MONTHS!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (Convert.ToInt32(txtMonths.Text) < 1)
+            {
+                MessageBox.Show("The Appliances minimum Ordered of ONE (1) month", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
     }
 }
